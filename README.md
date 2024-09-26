@@ -1,42 +1,44 @@
-# backend-eindproject
+# Culinary Journey - Een Wereld van Recepten
 
-Projectnaam: "Culinary Journey - Een Wereld van Recepten"
-
-Beschrijving:
+## Beschrijving:
 Maak een webapplicatie waarmee gebruikers recepten van over de hele wereld kunnen delen, zoeken, en ontdekken. Gebruikers kunnen hun favoriete recepten uploaden, beoordelen, en sorteren op basis van categorieën (bijv. ontbijt, lunch, diner) en afkomst (bijv. Italiaans, Chinees, Mexicaans). Elk recept bevat een gedetailleerde omschrijving, ingrediënten, stappen, kooktijd, en een afbeelding.
 
-Functionaliteiten:
-Gebruikersregistratie en Login (met sessies):
+## Functionaliteiten:
 
-Gebruikers kunnen zich registreren en inloggen om recepten toe te voegen of te beoordelen.
-Wachtwoorden worden opgeslagen zonder encryptie (zoals in je huidige leerdoelen).
-CRUD voor Recepten:
+1. **Gebruikersregistratie en Login (met sessies):**
+   - Gebruikers kunnen zich registreren en inloggen om recepten toe te voegen of te beoordelen.
+   - Wachtwoorden worden opgeslagen zonder encryptie (zoals in je huidige leerdoelen).
 
-Gebruikers kunnen recepten toevoegen, bewerken, verwijderen en bekijken.
-Maak gebruik van PDO om database-interacties te beheren (zoals receptgegevens en gebruikersinfo).
-Categorieën en Filters:
+2. **CRUD voor Recepten:**
+   - Gebruikers kunnen recepten toevoegen, bewerken, verwijderen en bekijken.
+   - Maak gebruik van PDO om database-interacties te beheren (zoals receptgegevens en gebruikersinfo).
 
-Voeg categorieën toe zoals ontbijt, lunch, diner, snacks, en filter de recepten op basis van land van herkomst.
-Beoordelingssysteem:
+3. **Categorieën en Filters:**
+   - Voeg categorieën toe zoals ontbijt, lunch, diner, snacks, en filter de recepten op basis van land van herkomst.
 
-Gebruikers kunnen recepten beoordelen met sterren (1-5) en de gemiddelde score wordt bij elk recept getoond.
-Favorietenlijst:
+4. **Beoordelingssysteem:**
+   - Gebruikers kunnen recepten beoordelen met sterren (1-5) en de gemiddelde score wordt bij elk recept getoond.
 
-Gebruikers kunnen recepten opslaan in hun eigen favorietenlijst.
-Zoekfunctie:
+5. **Favorietenlijst:**
+   - Gebruikers kunnen recepten opslaan in hun eigen favorietenlijst.
 
-Zoek op ingrediënt, titel, categorie, of land van herkomst.
-Responsive Design:
+6. **Zoekfunctie:**
+   - Zoek op ingrediënt, titel, categorie, of land van herkomst.
 
-Gebruik HTML, CSS of Bootstrap voor een intuïtieve en responsive interface.
-Admin Dashboard:
+7. **Responsive Design:**
+   - Gebruik HTML, CSS of Bootstrap voor een intuïtieve en responsive interface.
 
-Een speciale beheerderspagina waar je alle recepten en gebruikers kunt beheren, inclusief het verwijderen of wijzigen van ongepaste content.
-Git versiebeheer:
+8. **Admin Dashboard:**
+   - Een speciale beheerderspagina waar je alle recepten en gebruikers kunt beheren, inclusief het verwijderen of wijzigen van ongepaste content.
 
-Werk het project bij in Git en gebruik branches voor verschillende features (bijv. "auth-feature", "rating-system").
-Uitbreidingen:
+9. **Git versiebeheer:**
+   - Werk het project bij in Git en gebruik branches voor verschillende features (bijv. "auth-feature", "rating-system").
 
-Voeg een API toe waarmee je de recepten extern kunt raadplegen.
-Voeg een notificatiesysteem toe voor nieuwe recepten of beoordelingen.
+## Uitbreidingen:
+
+1. Voeg een API toe waarmee je de recepten extern kunt raadplegen.
+2. Voeg een notificatiesysteem toe voor nieuwe recepten of beoordelingen.
+
+---
+
 Dit project omvat alle vereiste technologieën en biedt genoeg mogelijkheden om verder uit te breiden.
