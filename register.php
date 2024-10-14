@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $error = '';
 
     if (empty($username) || empty($password)) {
-        $error = "Vul alstublieft zowel een gebruikersnaam als een wachtwoord in.";
+        $error = "gebruikersnaam en wachtwoord vereist";
     } else {
         $sql = "SELECT * FROM users WHERE username = :username";
         $stmt = $db->prepare($sql);
@@ -17,17 +17,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($existingUser) {
-            $error = "Deze gebruikersnaam bestaat al. Kies een andere.";
+            $error = "gebruikersnaam bestaat al";
         } else {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
             $stmt = $db->prepare($sql);
 
             if ($stmt->execute(['username' => $username, 'password' => $hashedPassword])) {
-                header("Location: login.php");
+                header("Location: index.php");
                 exit();
             } else {
-                $error = "Er is een fout opgetreden tijdens de registratie. Probeer het opnieuw.";
+                $error = "er is een fout gevonden, je kan het opnieuw proberen.";
             }
         }
     }
@@ -42,85 +42,108 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registreren</title>
-</head>
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       body {
+           
             margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+           
+            background-color: #333;
         }
 
         .login-container {
-            background-color: #fff;
-            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
+            color: white;
+            text-align: center;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            margin: auto;
         }
 
         h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #fff;
         }
 
         label {
+            display: block;
             margin-bottom: 8px;
-            color: #555;
+            font-size: 16px;
         }
 
         input {
-            padding: 10px;
+            width: 100%;
+            padding: 12px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #333;
+            background-color: #333;
             border-radius: 5px;
+            color: #fff;
             font-size: 16px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #e50914;
         }
 
         button {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
+            width: 100%;
+            padding: 12px;
+            background-color: #e50914;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
+            color: white;
             font-size: 16px;
+            cursor: pointer;
+           
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #f6121d;
         }
 
         .error-message {
-            color: red;
-            text-align: center;
-            margin-bottom: 15px;
+            color: #e87c03;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
+
+
     </style>
+</head>
 <body>
-    <h1>Registreren</h1>
-    <?php if (isset($_SESSION['error'])): ?>
-        <p style="color:red;"><?php echo htmlspecialchars($_SESSION['error']); ?></p>
-        <?php unset($_SESSION['error']); ?>
-    <?php endif; ?>
-    <form action="register.php" method="POST">
-        <label for="username">Gebruikersnaam:</label>
-        <input type="text" name="username" id="username" required><br>
+ 
+<?php require "navbar.php"; ?>
 
-        <label for="password">Wachtwoord:</label>
-        <input type="password" name="password" id="password" required><br>
+    <div class="login-container">
+        <h1>Registreren</h1>
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="error-message"><?php echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?></div>
+        <?php endif; ?>
+        <form action="register.php" method="POST">
+            <label for="username" class="visually-hidden">Gebruikersnaam</label>
+            <input type="text" name="username" id="username" placeholder="Gebruikersnaam" required>
 
-        <button type="submit">Registreren</button>
-    </form>
+            <label for="password" class="visually-hidden">Wachtwoord</label>
+            <input type="password" name="password" id="password" placeholder="Wachtwoord" required>
+
+            <button type="submit">Registreren</button>
+        </form>
+        <p class="mt-3"><a href="login.php" class="text-white">Al een account? Log in</a></p>
+    </div>
+
+    <?php require "footer.php"; ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

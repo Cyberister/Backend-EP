@@ -1,41 +1,139 @@
+<?php
+session_start();
+require 'db.php';
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+
+$stmt = $db->prepare('SELECT * FROM tasks WHERE user_id = :user_id');
+$stmt->execute(['user_id' => $user_id]);
+$tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Pagina</title>
+    <title>Takenbeheer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
 </head>
+
 <body>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
 
-<nav class="navbar navbar-expand-lg navbar-light bg-info">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Mijn Applicatie</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                </li>
-                <?php include 'navbar.php'; echo $menuItems; ?>
-            </ul>
-        </div>
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        footer {
+            background-color: #000022;
+            padding: 20px 0;
+            margin-top: auto;
+        }
+
+        footer p,
+        footer a {
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #e50914;
+        }
+
+        @media (max-width: 576px) {
+
+            footer p,
+            footer a {
+                font-size: 14px;
+            }
+        }
+
+        @media (min-width: 576px) {
+
+            footer p,
+            footer a {
+                font-size: 16px;
+            }
+        }
+    </style>
+    <?php require 'navbar.php'; ?>
+
+    <div class="container my-4">
+        <h1 class="text-center">Takenbeheer</h1>
+        <?php if ($user_id && !empty($tasks)): ?>
+            <div class="table-responsive">
+                <table class="table table-striped task-table">
+                    <thead>
+                        <tr>
+                            <th>Titel</th>
+                            <th>Beschrijving</th>
+                            <th>Deadline</th>
+                            <th>Prioriteit</th>
+                            <th>Voltooid</th>
+                            <th>Acties</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($tasks as $task): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($task['title']); ?></td>
+                                <td><?php echo htmlspecialchars($task['description']); ?></td>
+                                <td><?php echo htmlspecialchars($task['due_date']); ?></td>
+                                <td><?php echo htmlspecialchars($task['priority']); ?></td>
+                                <td><?php echo $task['completed'] ? 'Ja' : 'Nee'; ?></td>
+                                <td class="task-actions">
+                                    <a href="edit_task.php?task_id=<?php echo $task['id']; ?>" class="btn btn-success btn-sm">Bewerken</a>
+                                    <a href="delete_task.php?task_id=<?php echo $task['id']; ?>" class="btn btn-danger btn-sm">Verwijderen</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php elseif (!$user_id): ?>
+            <p class="text-center">Log in om uw taken te bekijken.</p>
+        <?php else: ?>
+            <p class="text-center">Geen taken nog :/</p>
+        <?php endif; ?>
     </div>
-</nav>
-
-<div class="container">
-    <h1>Taken Beheer</h1>
-   
-</div>
-
-<footer class="bg-info text-center text-lg-start mt-auto">
-    <div class="text-center p-3">
-        contact
+    <div class="text-center mb-4">
+        <img src="foto1.jpg" alt="Beschrijving van de afbeelding" class="img-fluid" style="width: 75px ; height: 75 px;">
     </div>
-</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="container text-center">
+        <a href="add_task.php" class="btn btn-success">Nieuwe Taak Toevoegen</a>
+    </div>
+    <div class="quote text-center my-4">
+        <blockquote class="blockquote bg-success
+
+ text-light p-3 rounded">
+            <p>Selim ~ &quot;Elke taak is een stap naar jouw doel. Maak ze waar!&quot;</p>
+
+        </blockquote>
+    </div>
+
+
+    <?php require "footer.php"; ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
+
 </html>
