@@ -17,61 +17,13 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Takenbeheer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
 
 
 </head>
 
 <body>
-    <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
 
-        body {
-            background-color: #f5f5f5;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            flex: 1;
-        }
-
-        footer {
-            background-color: #000022;
-            padding: 20px 0;
-            margin-top: auto;
-        }
-
-        footer p,
-        footer a {
-            color: white;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: #e50914;
-        }
-
-        @media (max-width: 576px) {
-
-            footer p,
-            footer a {
-                font-size: 14px;
-            }
-        }
-
-        @media (min-width: 576px) {
-
-            footer p,
-            footer a {
-                font-size: 16px;
-            }
-        }
-    </style>
     <?php require 'navbar.php'; ?>
 
     <div class="container my-4">
@@ -113,7 +65,7 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endif; ?>
     </div>
     <div class="text-center mb-4">
-        <img src="foto1.jpg" alt="Beschrijving van de afbeelding" class="img-fluid" style="width: 75px ; height: 75 px;">
+        <img src="foto1.jpg" alt="Beschrijving van de afbeelding" class="img-fluid" id="image">
     </div>
 
     <div class="container text-center">

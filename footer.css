@@ -1,0 +1,26 @@
+footer {
+    background-color: #000022;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+footer p, footer a {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #e50914;
+}
+
+@media (max-width: 576px) {
+    footer p, footer a {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 576px) {
+    footer p, footer a {
+        font-size: 16px;
+    }
+}

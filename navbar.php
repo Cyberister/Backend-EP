@@ -22,15 +22,6 @@ if (isset($_SESSION['user_id'])) {
         </li>';
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>footer</title>
-</head>
-<body>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">
@@ -54,35 +45,3 @@ if (isset($_SESSION['user_id'])) {
         </div>
     </div>
 </nav>
-
-<style>
-nav.navbar {
-    padding: 10px 15px; 
-    background-color: #000022;
-}
-
-nav.navbar .navbar-brand img {
-    width: 40px;
-    height: 40px; 
-    border-radius: 50%; 
-}
-
-
-
-nav.navbar a {
-    font-size: 16px; 
-    padding: 5px 10px; 
-}
-
-.username-box {
-    background-color: #f5f5f5 ; 
-    color: green;
-    padding: 3px 8px; 
-    font-size: 14px; 
-    border-radius: 50px; 
-    margin-left: 10px;
-}
-</style>
-    
-</body>
-</html>

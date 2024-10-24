@@ -55,51 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taak Bewerken</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="tasks.css">
 </head>
 <body>
-
-<style>
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-.container {
-    flex: 1;
-}
-
-footer {
-    background-color: #000022;
-    padding: 20px 0;
-    margin-top: auto;
-}
-
-footer p, footer a {
-    color: white;
-    transition: color 0.3s ease;    
-}
-
-footer a:hover {
-    color: #e50914;
-}
-
-@media (max-width: 576px) {
-    footer p, footer a {
-        font-size: 14px;
-    }
-}
-
-@media (min-width: 576px) {
-    footer p, footer a {
-        font-size: 16px;
-    }
-}
-    </style>
 <?php require 'navbar.php'; ?>
 
 <div class="container my-4">
